@@ -1,0 +1,46 @@
+{
+  "name": "Create a category",
+  "method": "POST",
+  "path": "/api/categories",
+  "description": "Pass parentId to create a subcategory.",
+  "request": {
+    "params": null,
+    "query": null,
+    "body": {
+      "fields": {
+        "name": "Category.name",
+        "parentId": "Category.parentId"
+      },
+      "example": {
+        "name": "SQLite",
+        "parentId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e01"
+      }
+    }
+  },
+  "responses": [
+    {
+      "status": 201,
+      "description": "Created. Returns the new category.",
+      "body": {
+        "data": {
+          "id": "3a7c9e21-5b4d-4f6a-8c2e-0d1f2a3b4c5d",
+          "name": "SQLite",
+          "parentId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e01",
+          "createdAt": "2026-11-22T18:00:00.000Z",
+          "updatedAt": "2026-11-22T18:00:00.000Z"
+        }
+      }
+    }
+  ],
+  "errors": [
+    "VALIDATION_FAILED",
+    "DUPLICATE_CATEGORY",
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ],
+  "rules": [
+    "name is trimmed; empty after trimming is VALIDATION_FAILED.",
+    "parentId must reference an existing category, otherwise VALIDATION_FAILED on parentId.",
+    "name must be unique among categories with the same parentId (case-insensitive), otherwise DUPLICATE_CATEGORY."
+  ]
+}

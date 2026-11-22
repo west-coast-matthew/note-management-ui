@@ -1,0 +1,71 @@
+{
+  "name": "Upload attachments",
+  "method": "POST",
+  "path": "/api/attachments",
+  "description": "Bulk upload as multipart/form-data: up to 50 `files` parts. Without noteId the files are staged until a note is saved with them (staged files are deleted after 24 hours). With embedded=true they are images placed in the note body rather than listed as attachments. Images get a WebP thumbnail.",
+  "request": {
+    "params": null,
+    "query": null,
+    "body": {
+      "contentType": "multipart/form-data",
+      "fields": {
+        "files": "File[] (1–50)",
+        "noteId": "optional — attach straight to this note",
+        "embedded": "optional — \"true\" for body images"
+      }
+    }
+  },
+  "responses": [
+    {
+      "status": 201,
+      "description": "Created. Returns every stored file, in the order sent.",
+      "body": {
+        "data": [
+          {
+            "id": "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01",
+            "noteId": null,
+            "fileName": "grants.png",
+            "mimeType": "image/png",
+            "size": 84213,
+            "kind": "image",
+            "embedded": false,
+            "width": 1280,
+            "height": 720,
+            "url": "/api/attachments/a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01/content",
+            "thumbnailUrl": "/api/attachments/a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01/thumbnail",
+            "createdAt": "2026-11-21T18:41:00.000Z"
+          },
+          {
+            "id": "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c02",
+            "noteId": null,
+            "fileName": "mariadb-security.pdf",
+            "mimeType": "application/pdf",
+            "size": 1048576,
+            "kind": "pdf",
+            "embedded": false,
+            "width": null,
+            "height": null,
+            "url": "/api/attachments/a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c02/content",
+            "thumbnailUrl": null,
+            "createdAt": "2026-11-21T18:41:00.000Z"
+          }
+        ],
+        "meta": {
+          "total": 2
+        }
+      }
+    }
+  ],
+  "errors": [
+    "VALIDATION_FAILED",
+    "FILE_TOO_LARGE",
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ],
+  "rules": [
+    "At least one file (VALIDATION_FAILED on files).",
+    "noteId, when sent, must reference an existing note (VALIDATION_FAILED on noteId).",
+    "embedded=true accepts images only (VALIDATION_FAILED on files).",
+    "Each file at most MAX_UPLOAD_MB (FILE_TOO_LARGE, 413)."
+  ]
+}

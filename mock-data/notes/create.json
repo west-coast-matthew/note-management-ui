@@ -1,0 +1,89 @@
+{
+  "name": "Create a note",
+  "method": "POST",
+  "path": "/api/notes",
+  "description": "The server sets id, createdAt and updatedAt. Upload files first (POST /api/attachments without noteId) and send their ids as attachmentIds.",
+  "request": {
+    "params": null,
+    "query": null,
+    "body": {
+      "fields": {
+        "title": "Note.title",
+        "summary": "Note.summary",
+        "body": "Note.body",
+        "categoryId": "Note.categoryId",
+        "attachmentIds": "string[] — staged attachments to file under this note"
+      },
+      "example": {
+        "title": "Create a MariaDB database and user",
+        "summary": "CREATE DATABASE, CREATE USER, then GRANT — in that order.",
+        "body": "<pre><code class=\"language-sql\">CREATE DATABASE note_mgmnt;</code></pre>",
+        "categoryId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e02",
+        "attachmentIds": [
+          "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01",
+          "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c02"
+        ]
+      }
+    }
+  },
+  "responses": [
+    {
+      "status": 201,
+      "description": "Created. Returns the new note with its attachments.",
+      "body": {
+        "data": {
+          "id": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e01",
+          "title": "Create a MariaDB database and user",
+          "summary": "CREATE DATABASE, CREATE USER, then GRANT — in that order.",
+          "body": "<h2>Database</h2><pre><code class=\"language-sql\">CREATE DATABASE note_mgmnt\n  CHARACTER SET utf8mb4\n  COLLATE utf8mb4_unicode_ci;</code></pre><h2>User and grants</h2><pre><code class=\"language-sql\">CREATE USER 'app'@'%' IDENTIFIED BY 'change-me';\nGRANT ALL PRIVILEGES ON note_mgmnt.* TO 'app'@'%';\nFLUSH PRIVILEGES;</code></pre><p>Use <code>'app'@'localhost'</code> instead of <code>%</code> when the app runs on the database host.</p>",
+          "categoryId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e02",
+          "attachments": [
+            {
+              "id": "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01",
+              "noteId": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e01",
+              "fileName": "grants.png",
+              "mimeType": "image/png",
+              "size": 84213,
+              "kind": "image",
+              "embedded": false,
+              "width": 1280,
+              "height": 720,
+              "url": "/api/attachments/a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01/content",
+              "thumbnailUrl": "/api/attachments/a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01/thumbnail",
+              "createdAt": "2026-11-21T18:41:00.000Z"
+            },
+            {
+              "id": "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c02",
+              "noteId": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e01",
+              "fileName": "mariadb-security.pdf",
+              "mimeType": "application/pdf",
+              "size": 1048576,
+              "kind": "pdf",
+              "embedded": false,
+              "width": null,
+              "height": null,
+              "url": "/api/attachments/a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c02/content",
+              "thumbnailUrl": null,
+              "createdAt": "2026-11-21T18:41:00.000Z"
+            }
+          ],
+          "createdAt": "2026-11-21T18:40:00.000Z",
+          "updatedAt": "2026-11-21T18:40:00.000Z"
+        }
+      }
+    }
+  ],
+  "errors": [
+    "VALIDATION_FAILED",
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ],
+  "rules": [
+    "title is trimmed and required (VALIDATION_FAILED on title), at most 200 characters.",
+    "summary is trimmed; empty becomes null. At most 1000 characters.",
+    "body is HTML from the editor. The server sanitizes it to the editor's markup; an editor with nothing typed is stored as \"\". At most 8,000,000 characters.",
+    "categoryId must reference an existing category or be null (VALIDATION_FAILED on categoryId).",
+    "attachmentIds must be staged attachments (noteId null) or already belong to this note (VALIDATION_FAILED on attachmentIds).",
+    "Staged images the body references (/api/attachments/:id/content) are filed under the note as embedded attachments."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Get an attachment's thumbnail",
+  "method": "GET",
+  "path": "/api/attachments/:id/thumbnail",
+  "description": "WebP thumbnail, longest side 640 px, for images only. Other kinds have none (thumbnailUrl is null); clients show a placeholder for the kind.",
+  "request": {
+    "params": {
+      "id": "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01"
+    },
+    "query": null,
+    "body": null
+  },
+  "responses": [
+    {
+      "status": 200,
+      "description": "OK.",
+      "headers": {
+        "Content-Type": "image/webp"
+      },
+      "body": null
+    },
+    {
+      "status": 404,
+      "description": "Not an image, or the image couldn't be read.",
+      "body": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "This attachment has no thumbnail."
+        }
+      }
+    }
+  ],
+  "errors": [
+    "NOT_FOUND",
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ]
+}

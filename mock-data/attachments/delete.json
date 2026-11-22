@@ -1,0 +1,25 @@
+{
+  "name": "Delete an attachment",
+  "method": "DELETE",
+  "path": "/api/attachments/:id",
+  "description": "Deletes the attachment and its stored file.",
+  "request": {
+    "params": {
+      "id": "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c02"
+    },
+    "query": null,
+    "body": null
+  },
+  "responses": [
+    {
+      "status": 204,
+      "description": "Deleted. No body.",
+      "body": null
+    }
+  ],
+  "errors": [
+    "NOT_FOUND",
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ]
+}

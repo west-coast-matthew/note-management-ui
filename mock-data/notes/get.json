@@ -1,0 +1,64 @@
+{
+  "name": "Get a note",
+  "method": "GET",
+  "path": "/api/notes/:id",
+  "request": {
+    "params": {
+      "id": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e01"
+    },
+    "query": null,
+    "body": null
+  },
+  "responses": [
+    {
+      "status": 200,
+      "description": "OK.",
+      "body": {
+        "data": {
+          "id": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e01",
+          "title": "Create a MariaDB database and user",
+          "summary": "CREATE DATABASE, CREATE USER, then GRANT — in that order.",
+          "body": "<h2>Database</h2><pre><code class=\"language-sql\">CREATE DATABASE note_mgmnt\n  CHARACTER SET utf8mb4\n  COLLATE utf8mb4_unicode_ci;</code></pre><h2>User and grants</h2><pre><code class=\"language-sql\">CREATE USER 'app'@'%' IDENTIFIED BY 'change-me';\nGRANT ALL PRIVILEGES ON note_mgmnt.* TO 'app'@'%';\nFLUSH PRIVILEGES;</code></pre><p>Use <code>'app'@'localhost'</code> instead of <code>%</code> when the app runs on the database host.</p>",
+          "categoryId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e02",
+          "attachments": [
+            {
+              "id": "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01",
+              "noteId": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e01",
+              "fileName": "grants.png",
+              "mimeType": "image/png",
+              "size": 84213,
+              "kind": "image",
+              "embedded": false,
+              "width": 1280,
+              "height": 720,
+              "url": "/api/attachments/a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01/content",
+              "thumbnailUrl": "/api/attachments/a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01/thumbnail",
+              "createdAt": "2026-11-21T18:41:00.000Z"
+            },
+            {
+              "id": "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c02",
+              "noteId": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e01",
+              "fileName": "mariadb-security.pdf",
+              "mimeType": "application/pdf",
+              "size": 1048576,
+              "kind": "pdf",
+              "embedded": false,
+              "width": null,
+              "height": null,
+              "url": "/api/attachments/a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c02/content",
+              "thumbnailUrl": null,
+              "createdAt": "2026-11-21T18:41:00.000Z"
+            }
+          ],
+          "createdAt": "2026-11-21T18:40:00.000Z",
+          "updatedAt": "2026-11-21T18:40:00.000Z"
+        }
+      }
+    }
+  ],
+  "errors": [
+    "NOT_FOUND",
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ]
+}

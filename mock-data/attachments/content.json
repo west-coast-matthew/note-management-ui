@@ -1,0 +1,35 @@
+{
+  "name": "Download an attachment",
+  "method": "GET",
+  "path": "/api/attachments/:id/content",
+  "description": "The stored file with its original Content-Type, shown inline (?download=1 to save it). Supports Range requests so video and audio can seek. Also the src of images embedded in note bodies.",
+  "request": {
+    "params": {
+      "id": "a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c01"
+    },
+    "query": {
+      "download": "optional"
+    },
+    "body": null
+  },
+  "responses": [
+    {
+      "status": 200,
+      "description": "OK. The body is the file itself.",
+      "headers": {
+        "Content-Type": "image/png"
+      },
+      "body": null
+    },
+    {
+      "status": 206,
+      "description": "Partial content for a Range request.",
+      "body": null
+    }
+  ],
+  "errors": [
+    "NOT_FOUND",
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ]
+}

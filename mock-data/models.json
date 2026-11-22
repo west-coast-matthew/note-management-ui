@@ -1,0 +1,169 @@
+{
+  "Category": {
+    "description": "A folder for notes. Categories nest: a category with a parentId is a subcategory of that parent, to any depth.",
+    "fields": {
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "readOnly": true
+      },
+      "name": {
+        "type": "string",
+        "required": true,
+        "minLength": 1,
+        "maxLength": 80,
+        "description": "Unique among siblings (case-insensitive)."
+      },
+      "parentId": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "uuid",
+        "references": "Category.id",
+        "default": null,
+        "description": "null for a top-level category."
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time",
+        "readOnly": true
+      },
+      "updatedAt": {
+        "type": "string",
+        "format": "date-time",
+        "readOnly": true
+      }
+    }
+  },
+  "Note": {
+    "description": "A document: title, optional summary, formatted HTML body, and attachments.",
+    "fields": {
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "readOnly": true
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "summary": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "maxLength": 1000,
+        "default": null
+      },
+      "body": {
+        "type": "string",
+        "format": "html",
+        "maxLength": 8000000,
+        "default": "",
+        "description": "Sanitized HTML from the rich text editor. Images point at /api/attachments/:id/content or are data: URIs."
+      },
+      "categoryId": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "uuid",
+        "references": "Category.id",
+        "default": null,
+        "description": "Category or subcategory the note is filed in. null means unsorted."
+      },
+      "attachments": {
+        "type": "array",
+        "items": "Attachment",
+        "readOnly": true,
+        "description": "Listed files and body images (embedded: true), oldest first."
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time",
+        "readOnly": true
+      },
+      "updatedAt": {
+        "type": "string",
+        "format": "date-time",
+        "readOnly": true
+      }
+    }
+  },
+  "Attachment": {
+    "description": "A file in the asset store.",
+    "fields": {
+      "id": {
+        "type": "string",
+        "format": "uuid",
+        "readOnly": true
+      },
+      "noteId": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "uuid",
+        "references": "Note.id",
+        "description": "null while staged."
+      },
+      "fileName": {
+        "type": "string",
+        "maxLength": 255
+      },
+      "mimeType": {
+        "type": "string"
+      },
+      "size": {
+        "type": "integer",
+        "description": "Bytes."
+      },
+      "kind": {
+        "type": "string",
+        "enum": [
+          "image",
+          "video",
+          "audio",
+          "pdf",
+          "text",
+          "other"
+        ]
+      },
+      "embedded": {
+        "type": "boolean",
+        "description": "true for images placed in the body."
+      },
+      "width": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "height": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "url": {
+        "type": "string",
+        "description": "Path of the file, relative to the API base URL."
+      },
+      "thumbnailUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Path of the WebP thumbnail; images only."
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time",
+        "readOnly": true
+      }
+    }
+  }
+}

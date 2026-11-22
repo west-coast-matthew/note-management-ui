@@ -1,0 +1,91 @@
+{
+  "description": "Every non-2xx response uses this envelope. `details` is present only for field-level problems. `message` is written to be shown to the user as-is.",
+  "envelope": {
+    "error": {
+      "code": "string",
+      "message": "string",
+      "details": [
+        {
+          "field": "string",
+          "message": "string"
+        }
+      ]
+    }
+  },
+  "errors": {
+    "VALIDATION_FAILED": {
+      "status": 400,
+      "message": "Some fields need attention.",
+      "example": {
+        "error": {
+          "code": "VALIDATION_FAILED",
+          "message": "Some fields need attention.",
+          "details": [
+            {
+              "field": "title",
+              "message": "Add a title so you can find this note later."
+            }
+          ]
+        }
+      }
+    },
+    "NOT_FOUND": {
+      "status": 404,
+      "message": "That item no longer exists. It may have been deleted.",
+      "example": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "That item no longer exists. It may have been deleted."
+        }
+      }
+    },
+    "DUPLICATE_CATEGORY": {
+      "status": 409,
+      "message": "A category with this name already exists here.",
+      "example": {
+        "error": {
+          "code": "DUPLICATE_CATEGORY",
+          "message": "A category with this name already exists here.",
+          "details": [
+            {
+              "field": "name",
+              "message": "\"MariaDB\" is already in Databases."
+            }
+          ]
+        }
+      }
+    },
+    "FILE_TOO_LARGE": {
+      "status": 413,
+      "message": "That file is too large to upload.",
+      "example": {
+        "error": {
+          "code": "FILE_TOO_LARGE",
+          "message": "That file is too large to upload."
+        }
+      }
+    },
+    "INTERNAL_ERROR": {
+      "status": 500,
+      "transient": true,
+      "message": "Something went wrong on the server. Try again.",
+      "example": {
+        "error": {
+          "code": "INTERNAL_ERROR",
+          "message": "Something went wrong on the server. Try again."
+        }
+      }
+    },
+    "SERVICE_UNAVAILABLE": {
+      "status": 503,
+      "transient": true,
+      "message": "The server is unavailable right now. Try again in a moment.",
+      "example": {
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "The server is unavailable right now. Try again in a moment."
+        }
+      }
+    }
+  }
+}

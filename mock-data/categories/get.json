@@ -1,0 +1,32 @@
+{
+  "name": "Get a category",
+  "method": "GET",
+  "path": "/api/categories/:id",
+  "request": {
+    "params": {
+      "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e02"
+    },
+    "query": null,
+    "body": null
+  },
+  "responses": [
+    {
+      "status": 200,
+      "description": "OK.",
+      "body": {
+        "data": {
+          "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e02",
+          "name": "MariaDB",
+          "parentId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e01",
+          "createdAt": "2026-11-01T15:01:00.000Z",
+          "updatedAt": "2026-11-01T15:01:00.000Z"
+        }
+      }
+    }
+  ],
+  "errors": [
+    "NOT_FOUND",
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ]
+}

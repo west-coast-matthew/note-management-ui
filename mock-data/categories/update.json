@@ -1,0 +1,47 @@
+{
+  "name": "Update a category",
+  "method": "PATCH",
+  "path": "/api/categories/:id",
+  "description": "Rename and/or move a category. Partial: send only what changes.",
+  "request": {
+    "params": {
+      "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e02"
+    },
+    "query": null,
+    "body": {
+      "fields": {
+        "name": "Category.name",
+        "parentId": "Category.parentId"
+      },
+      "example": {
+        "name": "MariaDB / MySQL"
+      }
+    }
+  },
+  "responses": [
+    {
+      "status": 200,
+      "description": "OK. Returns the updated category.",
+      "body": {
+        "data": {
+          "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e02",
+          "name": "MariaDB / MySQL",
+          "parentId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e01",
+          "createdAt": "2026-11-01T15:01:00.000Z",
+          "updatedAt": "2026-11-22T18:05:00.000Z"
+        }
+      }
+    }
+  ],
+  "errors": [
+    "VALIDATION_FAILED",
+    "NOT_FOUND",
+    "DUPLICATE_CATEGORY",
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ],
+  "rules": [
+    "Same name rules as create.",
+    "parentId can't be the category itself or one of its descendants (VALIDATION_FAILED on parentId)."
+  ]
+}

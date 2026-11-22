@@ -1,0 +1,77 @@
+{
+  "name": "List categories",
+  "method": "GET",
+  "path": "/api/categories",
+  "description": "Every category as a flat list. Clients build the tree from parentId.",
+  "request": {
+    "params": null,
+    "query": null,
+    "body": null
+  },
+  "responses": [
+    {
+      "status": 200,
+      "description": "OK. Also the seed data for the mock backend.",
+      "body": {
+        "data": [
+          {
+            "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e01",
+            "name": "Databases",
+            "parentId": null,
+            "createdAt": "2026-11-01T15:00:00.000Z",
+            "updatedAt": "2026-11-01T15:00:00.000Z"
+          },
+          {
+            "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e02",
+            "name": "MariaDB",
+            "parentId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e01",
+            "createdAt": "2026-11-01T15:01:00.000Z",
+            "updatedAt": "2026-11-01T15:01:00.000Z"
+          },
+          {
+            "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e03",
+            "name": "PostgreSQL",
+            "parentId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e01",
+            "createdAt": "2026-11-01T15:02:00.000Z",
+            "updatedAt": "2026-11-01T15:02:00.000Z"
+          },
+          {
+            "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e04",
+            "name": "DevOps",
+            "parentId": null,
+            "createdAt": "2026-11-05T09:30:00.000Z",
+            "updatedAt": "2026-11-05T09:30:00.000Z"
+          },
+          {
+            "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e05",
+            "name": "Docker",
+            "parentId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e04",
+            "createdAt": "2026-11-05T09:31:00.000Z",
+            "updatedAt": "2026-11-05T09:31:00.000Z"
+          },
+          {
+            "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e06",
+            "name": "Nginx",
+            "parentId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e04",
+            "createdAt": "2026-11-05T09:32:00.000Z",
+            "updatedAt": "2026-11-05T09:32:00.000Z"
+          },
+          {
+            "id": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e07",
+            "name": "Home",
+            "parentId": null,
+            "createdAt": "2026-11-08T12:00:00.000Z",
+            "updatedAt": "2026-11-08T12:00:00.000Z"
+          }
+        ],
+        "meta": {
+          "total": 7
+        }
+      }
+    }
+  ],
+  "errors": [
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ]
+}

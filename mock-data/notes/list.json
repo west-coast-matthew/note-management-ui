@@ -1,0 +1,88 @@
+{
+  "name": "List notes",
+  "method": "GET",
+  "path": "/api/notes",
+  "description": "Every note with its attachments, newest first. Clients filter by category and search on their side.",
+  "request": {
+    "params": null,
+    "query": null,
+    "body": null
+  },
+  "responses": [
+    {
+      "status": 200,
+      "description": "OK. Also the seed data for the mock backend.",
+      "body": {
+        "data": [
+          {
+            "id": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e01",
+            "title": "Create a MariaDB database and user",
+            "summary": "CREATE DATABASE, CREATE USER, then GRANT — in that order.",
+            "body": "<h2>Database</h2><pre><code class=\"language-sql\">CREATE DATABASE note_mgmnt\n  CHARACTER SET utf8mb4\n  COLLATE utf8mb4_unicode_ci;</code></pre><h2>User and grants</h2><pre><code class=\"language-sql\">CREATE USER 'app'@'%' IDENTIFIED BY 'change-me';\nGRANT ALL PRIVILEGES ON note_mgmnt.* TO 'app'@'%';\nFLUSH PRIVILEGES;</code></pre><p>Use <code>'app'@'localhost'</code> instead of <code>%</code> when the app runs on the database host.</p>",
+            "categoryId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e02",
+            "attachments": [],
+            "createdAt": "2026-11-21T18:40:00.000Z",
+            "updatedAt": "2026-11-21T18:40:00.000Z"
+          },
+          {
+            "id": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e02",
+            "title": "Reset a forgotten MariaDB root password",
+            "summary": "Restart with --skip-grant-tables, then ALTER USER.",
+            "body": "<ol><li><p>Stop the server and start it with <code>--skip-grant-tables --skip-networking</code>.</p></li><li><p>Connect with <code>mariadb -u root</code> and run:</p></li></ol><pre><code class=\"language-sql\">FLUSH PRIVILEGES;\nALTER USER 'root'@'localhost' IDENTIFIED BY 'new-password';</code></pre><ol start=\"3\"><li><p>Restart normally.</p></li></ol>",
+            "categoryId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e02",
+            "attachments": [],
+            "createdAt": "2026-11-18T09:12:00.000Z",
+            "updatedAt": "2026-11-18T09:12:00.000Z"
+          },
+          {
+            "id": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e03",
+            "title": "psql cheat sheet",
+            "summary": "Meta-commands I always forget.",
+            "body": "<ul><li><p><code>\\l</code> — list databases</p></li><li><p><code>\\c dbname</code> — connect</p></li><li><p><code>\\dt</code> — list tables</p></li><li><p><code>\\d+ table</code> — describe a table</p></li><li><p><code>\\x</code> — toggle expanded output</p></li></ul>",
+            "categoryId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e03",
+            "attachments": [],
+            "createdAt": "2026-11-14T20:05:00.000Z",
+            "updatedAt": "2026-11-14T20:05:00.000Z"
+          },
+          {
+            "id": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e04",
+            "title": "Prune unused Docker images and volumes",
+            "summary": null,
+            "body": "<pre><code class=\"language-bash\">docker system df\ndocker image prune -a\ndocker volume prune</code></pre><p><strong>Careful:</strong> <code>volume prune</code> deletes data in every volume no container is using.</p>",
+            "categoryId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e05",
+            "attachments": [],
+            "createdAt": "2026-11-10T16:30:00.000Z",
+            "updatedAt": "2026-11-10T16:30:00.000Z"
+          },
+          {
+            "id": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e05",
+            "title": "Reverse proxy to a Node app",
+            "summary": "proxy_pass with the headers Express needs behind a proxy.",
+            "body": "<pre><code class=\"language-nginx\">location /api/ {\n  proxy_pass http://127.0.0.1:3002;\n  proxy_set_header Host $host;\n  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n  client_max_body_size 200m;\n}</code></pre><p>Raise <code>client_max_body_size</code> or uploads fail with 413.</p>",
+            "categoryId": "6f1d2c4e-8a3b-4c5d-9e7f-1a2b3c4d5e06",
+            "attachments": [],
+            "createdAt": "2026-11-07T11:45:00.000Z",
+            "updatedAt": "2026-11-07T11:45:00.000Z"
+          },
+          {
+            "id": "4c8e1f20-7a6b-4d3c-9e2f-0a1b2c3d4e06",
+            "title": "Furnace filter size",
+            "summary": "16 × 25 × 1, MERV 11. Change every 90 days.",
+            "body": "<p>Last changed <strong>November 2</strong>. Spare filters are on the shelf above the water heater.</p>",
+            "categoryId": null,
+            "attachments": [],
+            "createdAt": "2026-11-02T08:00:00.000Z",
+            "updatedAt": "2026-11-02T08:00:00.000Z"
+          }
+        ],
+        "meta": {
+          "total": 6
+        }
+      }
+    }
+  ],
+  "errors": [
+    "INTERNAL_ERROR",
+    "SERVICE_UNAVAILABLE"
+  ]
+}
