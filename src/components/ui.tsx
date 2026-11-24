@@ -98,6 +98,8 @@ const paths = {
   undo: 'M9 14L4 9l5-5M4 9h10a6 6 0 010 12h-3',
   redo: 'M15 14l5-5-5-5M20 9H10a6 6 0 000 12h3',
   imageBlock: 'M4 4h16v10H4zM4 18h16M4 21h10',
+  copy: 'M9 9h10v11H9zM5 15V4h10',
+  copySelection: 'M9 9h10v11H9zM5 15V4h10M12 13h4M12 16h2.5',
   imageInline: 'M3 7h7v7H3zM13 8h8M13 12h8M3 18h18',
 }
 
